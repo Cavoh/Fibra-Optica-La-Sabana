@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOVILSET</title>
     
@@ -67,39 +67,20 @@
             padding: 20px; /* Espaciado interno del cuadro */
         }
 
-        #form-container input[type="text"] {
+        #form-container input[type="text"],
+        #form-container button {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
+            border: 0px solid #ccc; /* Puedes ajustar el borde si es necesario */
         }
 
-        /* Resto del CSS existente */
-
-.whatsapp-logo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    transform: rotate(45deg);
-}
-
-.whatsapp-logo a {
-    display: block;
-    width: 50px;
-    height: 50px;
-    background-color: green;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.whatsapp-logo img {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-}
-
+        .whatsapp-button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -121,9 +102,10 @@
     <div id="form-container">
         <div id="form-wrapper"> <!-- Contenedor del formulario -->
             <form>
-                <input type="text" placeholder="Nombre">
-                <input type="text" placeholder="Teléfono">
-                <input type="text" placeholder="Dirección">
+                <input type="text" id="nombre" placeholder="Nombre">
+                <input type="text" id="telefono" placeholder="Teléfono">
+                <input type="text" id="direccion" placeholder="Dirección">
+                <button class="whatsapp-button" onclick="enviarWhatsApp()" type="button">Chat de cobertura</button>
             </form>
         </div>
     </div>
@@ -146,15 +128,17 @@
             showSlide(currentSlide);
         }
 
+        function enviarWhatsApp() {
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const direccion = document.getElementById('direccion').value;
+            
+            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Nombre:${nombre}%0ATeléfono:${telefono}%0ADirección:${direccion}`;
+            window.location.href = url;
+        }
+
         setInterval(nextSlide, 2000); // Cambia la imagen cada 2 segundos
     </script>
-
-<div class="whatsapp-logo">
-    <a href="https://api.whatsapp.com/send?phone=573106181505" target="_blank">
-        <img src="wapp.png" alt="WhatsApp">
-    </a>
-</div>
-
 </body>
 
 </html>
