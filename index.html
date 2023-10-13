@@ -105,7 +105,7 @@
                 <input type="text" id="nombre" placeholder="Nombre">
                 <input type="text" id="telefono" placeholder="Teléfono">
                 <input type="text" id="direccion" placeholder="Dirección">
-                <button class="whatsapp-button" onclick="enviarWhatsApp()" type="button">Chat de cobertura</button>
+                <button class="whatsapp-button" onclick="enviarWhatsApp()" type="button">CHAT DE COBERTURA</button>
             </form>
         </div>
     </div>
@@ -133,12 +133,10 @@
             const telefono = document.getElementById('telefono').value;
             const direccion = document.getElementById('direccion').value;
             
-            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Nombre:${nombre}%0ATeléfono:${telefono}%0ADirección:${direccion}`;
+            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Nombre:  ${nombre}%0ATeléfono:  ${telefono}%0ADirección:  ${direccion}`;
             window.location.href = url;
         }
 
         setInterval(nextSlide, 2000); // Cambia la imagen cada 2 segundos
     </script>
 </body>
-
-</html>
