@@ -70,11 +70,13 @@
         }
 
         #form-container input[type="text"],
+        #form-container select,
         #form-container button {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             border: 0px solid #ccc; /* Puedes ajustar el borde si es necesario */
+            box-sizing: border-box; /* Asegura que el padding y border estén incluidos en el width */
         }
 
         .whatsapp-button {
@@ -118,9 +120,16 @@
 <body>
     <div id="form-container">
         <h1>Verifica aquí tu cobertura</h1>
-        <h3>Ingresa tu número de celular para verificar tu cobertura con todos los operadores en tu zona y te contactamos.</h3>
+        <h3>Ingresa tus datos para verificar tu cobertura con todos los operadores en tu zona y te contactamos.</h3>
         <div id="form-wrapper"> <!-- Contenedor del formulario -->
             <form>
+                <select id="ciudad">
+                    <option value="Bogota">Bogotá</option>
+                    <option value="Funza">Funza</option>
+                    <option value="Madrid">Madrid</option>
+                    <option value="Mosquera">Mosquera</option>
+                </select>
+                <input type="text" id="direccion" placeholder="Dirección">
                 <input type="text" id="telefono" placeholder="Teléfono" oninput="validarNumero()">                
                 <button class="whatsapp-button" onclick="enviarWhatsApp()" type="button">Verifica tu cobertura!</button>
             </form>
@@ -169,9 +178,11 @@
         }
 
         function enviarWhatsApp() {
+            const ciudad = document.getElementById('ciudad').value;
+            const direccion = document.getElementById('direccion').value;
             const telefono = document.getElementById('telefono').value;
             
-            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Teléfono: ${telefono}`;
+            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Ciudad: ${ciudad}, Dirección: ${direccion}, Teléfono: ${telefono}`;
             window.location.href = url;
         }
 
@@ -180,5 +191,6 @@
 </body>
 
 </html>
+
 
 
