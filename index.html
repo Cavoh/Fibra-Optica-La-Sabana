@@ -102,7 +102,7 @@
     <div id="form-container">
         <div id="form-wrapper"> <!-- Contenedor del formulario -->
             <form>
-                <input type="text" id="telefono" placeholder="Teléfono">                
+                <input type="text" id="telefono" placeholder="Teléfono" oninput="validarNumero()">                
                 <button class="whatsapp-button" onclick="enviarWhatsApp()" type="button">Verifica tu covertura!</button>
             </form>
         </div>
@@ -126,15 +126,25 @@
             showSlide(currentSlide);
         }
 
+        function validarNumero() {
+            const telefonoInput = document.getElementById('telefono');
+            const telefono = telefonoInput.value;
+            if (/[^0-9]/.test(telefono)) {
+                alert('Ese no es un número telefónico!');
+                telefonoInput.value = telefono.replace(/[^0-9]/g, '');
+            }
+        }
+
         function enviarWhatsApp() {
-            const nombre = document.getElementById('nombre').value;
             const telefono = document.getElementById('telefono').value;
-            const direccion = document.getElementById('direccion').value;
             
-            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Nombre:  ${nombre}%0ATeléfono:  ${telefono}%0ADirección:  ${direccion}`;
+            const url = `https://api.whatsapp.com/send?phone=573106181505&text=Teléfono: ${telefono}`;
             window.location.href = url;
         }
 
         setInterval(nextSlide, 3000); // Cambia la imagen cada 3 segundos
     </script>
 </body>
+
+</html>
+
