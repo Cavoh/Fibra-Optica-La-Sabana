@@ -190,9 +190,11 @@
             
             const mensaje = `Ciudad: ${ciudad}, Dirección: ${direccion}, Teléfono: ${telefono}`;
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const url = isMobile
-                ? `whatsapp://send?text=${encodeURIComponent(mensaje)}`
-                : `https://web.whatsapp.com/send?phone=573106181505&text=${encodeURIComponent(mensaje)}`;
+            let url = 'https://web.whatsapp.com/send?phone=573106181505&text=' + encodeURIComponent(mensaje);
+            
+            if (isMobile) {
+                url = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
+            }
             
             window.location.href = url;
         }
