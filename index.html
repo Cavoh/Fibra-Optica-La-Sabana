@@ -189,12 +189,15 @@
             }
             
             const mensaje = `Ciudad: ${ciudad}, Dirección: ${direccion}, Teléfono: ${telefono}`;
+            const phone = '573106181505';  // Reemplaza con el número de teléfono adecuado
+
+            let url = 'https://web.whatsapp.com/send?phone=' + phone + '&text=' + encodeURIComponent(mensaje);
+    
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            let url = 'https://web.whatsapp.com/send?phone=573106181505&text=' + encodeURIComponent(mensaje);
-            
+    
             if (isMobile) {
-                url = 'whatsapp://send?text=' + encodeURIComponent(mensaje);
-            }
+            url = 'whatsapp://send?phone=' + phone + '&text=' + encodeURIComponent(mensaje);
+    }
             
             window.location.href = url;
         }
